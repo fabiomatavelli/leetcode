@@ -1,4 +1,4 @@
-import solution
+from problems.remove_duplicates_from_sorted_array import Solution
 
 class Case(object):
   def __init__(self, nums, result):
@@ -12,6 +12,6 @@ tests = [
 ]
 
 def test_solution():
-  s = solution.Solution()
+  s = Solution()
   for t in tests:
     assert  s.removeDuplicates(t.nums) == t.result

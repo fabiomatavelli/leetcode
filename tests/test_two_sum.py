@@ -1,5 +1,4 @@
-import worst_solution
-import best_solution
+from problems.two_sum import Solution
 
 class Case(object):
   def __init__(self, nums, target, result):
@@ -15,14 +14,8 @@ tests = [
   Case([3,2,4], 6, [1, 2])
 ]
 
-def test_worst_solution():
-  s = worst_solution.Solution()
-  for t in tests:
-    result = s.twoSum(t.nums, t.target)
-    assert  result == t.result
-
-def test_best_solution():
-  s = best_solution.Solution()
+def test_solution():
+  s = Solution()
   for t in tests:
     result = s.twoSum(t.nums, t.target)
     assert  result == t.result
