@@ -4,7 +4,7 @@ class Solution(object):
     :type board: List[List[str]]
     :rtype: bool
     """
-    result = {}
+    result = set()
     g = 0
     s = -3
     is_valid = True
@@ -12,28 +12,22 @@ class Solution(object):
     for i_r, r in enumerate(board):
       if i_r%3 == 0:
         s += 3
-      
-      if not result.has_key("r{0}".format(i_r)):
-          result["r{0}".format(i_r)] = []
+
+      if not is_valid:
+        break
 
       for i_c, c in enumerate(r):
         if i_c%3 == 0:
           g += 1
-        
-        if not result.has_key(g+s):
-          result[g+s] = []
-        
-        if not result.has_key("c{0}".format(i_c)):
-          result["c{0}".format(i_c)] = []
 
         if c != ".":
-          if c in result[g+s] + result["r{0}".format(i_r)] + result["c{0}".format(i_c)]:
+          if (g+s,c) in result or ("r{0}".format(i_r),c) in result or ("c{0}".format(i_c),c) in result:
             is_valid = False
             break
 
-          result[g+s].append(c)
-          result["r{0}".format(i_r)].append(c)
-          result["c{0}".format(i_c)].append(c)
+          result.add((g+s,c))
+          result.add(("r{0}".format(i_r),c))
+          result.add(("c{0}".format(i_c),c))
       
       g = 0
 
